@@ -8,7 +8,7 @@
           "submenu": [
             {
               "label": "Format",
-              "command": "beautify-my-code:format"
+              "command": "beautify-my-code-atom:format"
             }
           ]
         }
