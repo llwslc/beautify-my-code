@@ -2,7 +2,7 @@
   "name": "beautify-my-code-atom",
   "main": "./lib/index",
   "version": "0.0.0",
-  "description": "javascript formatting for the atom text editor",
+  "description": "javascript format",
   "repository": "https://github.com/llwslc/beautify-my-code-atom",
   "license": "MIT",
   "dependencies": {
