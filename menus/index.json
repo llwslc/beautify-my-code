@@ -7,8 +7,8 @@
           "label": "Beautify My Code",
           "submenu": [
             {
-              "label": "Format",
-              "command": "beautify-my-code-atom:format"
+              "label": "√ Format on save",
+              "command": "beautify-my-code-atom:format_on_save"
             }
           ]
         }
