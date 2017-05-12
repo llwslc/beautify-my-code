@@ -1,18 +1,16 @@
+
 {
   "menu": [
+  {
+    "label": "Packages",
+    "submenu": [
     {
-      "label": "Packages",
+      "label": "Beautify My Code",
       "submenu": [
-        {
-          "label": "Beautify My Code",
-          "submenu": [
-            {
-              "label": "√ Format on save",
-              "command": "beautify-my-code-atom:format_on_save"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+      {
+        "label": "√ Format on save",
+        "command": "beautify-my-code-atom:format_on_save"
+      }]
+    }]
+  }]
 }
