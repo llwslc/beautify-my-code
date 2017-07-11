@@ -1,12 +1,25 @@
 
 {
-  "name": "beautify-my-code-atom",
-  "main": "./lib/index",
-  "version": "0.0.0",
-  "description": "javascript format",
-  "repository": "https://github.com/llwslc/beautify-my-code-atom",
-  "license": "MIT",
+  "name": "beautify-my-code",
+  "displayName": "Beautify My Code",
+  "version": "0.0.1",
+  "publisher": "beautify-my-code",
+  "description": "javascript format.",
+  "categories": [
+    "Languages",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "main": "./out/extension",
   "dependencies": {
     "js-beautify": "^1.6.12"
-  }
+  },
+  "repository": "https://github.com/llwslc/beautify-my-code",
+  "homepage": "https://github.com/llwslc/beautify-my-code/blob/master/README.md",
+  "license": "MIT"
 }
