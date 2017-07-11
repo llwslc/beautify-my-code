@@ -2,9 +2,13 @@
 {
   "name": "beautify-my-code",
   "displayName": "Beautify My Code",
-  "version": "0.0.1",
-  "publisher": "beautify-my-code",
   "description": "javascript format.",
+  "version": "0.0.1",
+  "author": "llwslc <llwslc@gmail.com>",
+  "publisher": "llwslc",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
   "categories": [
     "Languages",
     "Snippets"
@@ -12,10 +16,13 @@
   "activationEvents": [
     "*"
   ],
-  "engines": {
-    "vscode": "^1.0.0"
+  "main": "./src/extension",
+  "contributes": {
+      "commands": [{
+          "command": "extension.sayHello",
+          "title": "Hello World"
+      }]
   },
-  "main": "./out/extension",
   "dependencies": {
     "js-beautify": "^1.6.12"
   },
