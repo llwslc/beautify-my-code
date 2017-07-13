@@ -1,15 +1,50 @@
 
 var vscode = require('vscode');
-var jsBeautify = require('mJsBeautify');
 
 exports.activate = function (context)
 {
-    vscode.workspace.onDidSaveTextDocument(function (document)
+    var textEditorObs = {};
+
+    var initTextEditorObserve = function (editor)
     {
-    console.log(document.getText().length);
-vscode.window.showInformationMessage(document.getText().length);
+        var doc = editor.document;
+        var language = doc.languageId;
+        if (language == 'javascript' || language == 'json')
+        {
+            textEditorObs[doc.uri.fsPath] = editor;
+        }
+    }
+
+    for (var i = 0, iLen = vscode.window.visibleTextEditors.length; i < iLen; ++i)
+    {
+        initTextEditorObserve(vscode.window.visibleTextEditors[i]);
+    }
+
+    vscode.workspace.onDidOpenTextDocument(function (document)
+    {
+        const active = vscode.window.activeTextEditor;
+        if (!active && !acitve.document.isUntitled) return;
+
+        initTextEditorObserve(active)
     });
+
+    vscode.workspace.onWillSaveTextDocument(function (event)
+    {
+        var doc = event.document;
+        var curText = doc.getText();
+        console.log(doc.getText().length);
+
+        var newText = curText + 'xxxx';
+
+        var fullRange = new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
+        textEditorObs[doc.uri.fsPath].edit(function (editorEdit)
+        {
+            editorEdit.replace(fullRange, newText);
+        });
+
+        vscode.window.showInformationMessage(document.getText().length);
+    });
+
 };
 
-exports.deactivate = function ()
-{};
+exports.deactivate = function () { };
