@@ -6,7 +6,7 @@
   "author": "llwslc <llwslc@gmail.com>",
   "publisher": "llwslc",
   "engines": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.14.0"
   },
   "categories": [
     "Languages",
@@ -28,7 +28,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "vscode": "^1.0.0"
+    "vscode": "^1.1.4"
   },
   "dependencies": {
     "js-beautify": "^1.6.12"
@@ -37,4 +37,3 @@
   "homepage": "https://github.com/llwslc/beautify-my-code/blob/master/README.md",
   "license": "MIT"
 }
-
