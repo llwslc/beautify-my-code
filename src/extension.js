@@ -1,50 +1,42 @@
 
 var vscode = require('vscode');
+var mJsBeautify = require('./mJsBeautify');
+
 
 exports.activate = function (context)
 {
-    var textEditorObs = {};
-
-    var initTextEditorObserve = function (editor)
+    var myConfig = {};
+    var getCfg = function ()
     {
-        var doc = editor.document;
-        var language = doc.languageId;
-        if (language == 'javascript' || language == 'json')
-        {
-            textEditorObs[doc.uri.fsPath] = editor;
-        }
+        myConfig = vscode.workspace.getConfiguration('beautify-my-code');
     }
-
-    for (var i = 0, iLen = vscode.window.visibleTextEditors.length; i < iLen; ++i)
-    {
-        initTextEditorObserve(vscode.window.visibleTextEditors[i]);
-    }
-
-    vscode.workspace.onDidOpenTextDocument(function (document)
-    {
-        const active = vscode.window.activeTextEditor;
-        if (!active && !acitve.document.isUntitled) return;
-
-        initTextEditorObserve(active)
-    });
 
     vscode.workspace.onWillSaveTextDocument(function (event)
     {
         var doc = event.document;
-        var curText = doc.getText();
-        console.log(doc.getText().length);
-
-        var newText = curText + 'xxxx';
+        if (doc.languageId !== 'javascript' && doc.languageId !== 'json')
+        {
+            return;
+        }
+            
+        var editorText = doc.getText();
+        var newText =editorText// mJsBeautify(editorText, myConfig);
 
         var fullRange = new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
-        textEditorObs[doc.uri.fsPath].edit(function (editorEdit)
-        {
-            editorEdit.replace(fullRange, newText);
-        });
+        var we = new vscode.WorkspaceEdit();
 
-        vscode.window.showInformationMessage(document.getText().length);
+        we.replace(doc.uri, fullRange, newText);
+        vscode.workspace.applyEdit(we);
     });
 
+    vscode.workspace.onDidChangeConfiguration(function ()
+    {
+        getCfg();
+    });
+    
+        getCfg();
+
+        console.log(myConfig);
 };
 
 exports.deactivate = function () { };
