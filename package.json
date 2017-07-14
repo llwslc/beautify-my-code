@@ -17,122 +17,94 @@
   ],
   "main": "./src/extension",
   "contributes": {
-		"configuration": {
-			"type": "object",
-			"title": "beautify-my-code",
-			"function_setting": {
-        "type": "object",
-        "title": "功能",
-    "order": 1,
-			"properties": {
-				"format_on_save": {
-					"type": "boolean",
-					"default": true,
-					"description": "文件保存时格式化代码"
+    "configuration": {
+      "type": "object",
+      "title": "beautify-my-code",
+      "properties": {
+        "beautify-my-code.function_setting.format_on_save": {
+          "description": "功能:文件保存时格式化代码",
+          "type": "boolean",
+          "default": true
+        },
+        "beautify-my-code.tab_setting.indent_with_tabs": {
+          "description": "缩进类型: 使用 tab 缩进代码",
+          "type": "boolean",
+          "default": false
+        },
+        "beautify-my-code.tab_setting.indent_size": {
+          "description": "缩进类型: 代码缩进的长度为几个字母",
+          "type": "integer",
+          "default": 2
+        },
+        "beautify-my-code.style_setting.brace_style": {
+          "description": "缩进风格: 大括号缩进风格",
+          "type": "string",
+          "default": "expand",
+          "enum": [
+            "collapse",
+            "expand",
+            "end-expand",
+            "none"
+          ]
+        },
+        "beautify-my-code.style_setting.preserve_inline": {
+          "description": "缩进风格: 保留内联代码的缩进",
+          "type": "boolean",
+          "default": true
+        },
+        "beautify-my-code.style_setting.object_brace_style_collapse": {
+          "description": "缩进风格: object 大括号缩进风格为 collapse",
+          "type": "boolean",
+          "default": true
+        },
+        "beautify-my-code.style_setting.space_in_brace": {
+          "description": "缩进风格: 大括号前后填充空格",
+          "type": "boolean",
+          "default": false
+        },
+        "beautify-my-code.style_setting.keep_array_indentation": {
+          "description": "缩进风格: 保留代码中 array 的缩进",
+          "type": "boolean",
+          "default": false
+        },
+        "beautify-my-code.style_setting.break_chained_methods": {
+          "description": "缩进风格: 链式函数另起一行",
+          "type": "boolean",
+          "default": false
+        },
+        "beautify-my-code.newline_setting.newline_at_start": {
+          "description": "空行相关: 以空行为文件开头",
+          "type": "boolean",
+          "default": true
+        },
+        "beautify-my-code.newline_setting.newline_at_end": {
+          "description": "空行相关: 以空行为文件结尾",
+          "type": "boolean",
+          "default": true
+        },
+        "beautify-my-code.newline_setting.max_preserve_newlines": {
+          "description": "空行相关: 保留最多的空白行数",
+          "type": "integer",
+          "default": 3
+        },
+        "beautify-my-code.other_setting.space_after_anon_function": {
+          "description": "其他: 匿名函数和括号之间加一个空格",
+          "type": "boolean",
+          "default": true
+        },
+        "beautify-my-code.other_setting.code_comment_align": {
+          "description": "其他: 连续行代码注释对齐",
+          "type": "boolean",
+          "default": true
         }
-      }
       },
-  "tab_setting": {
-    "title": "缩进类型",
-    "type": "object",
-    "order": 2,
-    "properties": {
-      "indent_with_tabs": {
-        "title": "使用 tab 缩进代码",
-        "type": "boolean",
-        "default": false
-      },
-      "indent_size": {
-        "title": "代码缩进的长度为几个字母",
-        "type": "integer",
-        "default": 2
-      }
+      "snippets": [
+        {
+          "language": "javascript",
+          "path": "./snippets/javascript.json"
+        }
+      ]
     }
-  },
-  "style_setting": {
-    "title": "缩进风格",
-    "type": "object",
-    "order": 3,
-    "properties": {
-      "brace_style": {
-        "title": "大括号缩进风格",
-        "type": "string",
-        "default": "expand",
-        "enum": ["collapse", "expand", "end-expand", "none"]
-      },
-      "preserve_inline": {
-        "title": "保留内联代码的缩进",
-        "type": "boolean",
-        "default": true
-      },
-      "object_brace_style_collapse": {
-        "title": "object 大括号缩进风格为 collapse",
-        "type": "boolean",
-        "default": true
-      },
-      "space_in_brace": {
-        "title": "大括号前后填充空格",
-        "type": "boolean",
-        "default": false
-      },
-      "keep_array_indentation": {
-        "title": "保留代码中 array 的缩进",
-        "type": "boolean",
-        "default": false
-      },
-      "z_break_chained_methods": {
-        "title": "链式函数另起一行",
-        "type": "boolean",
-        "default": false
-      }
-    }
-  },
-  "newline_setting": {
-    "title": "空行相关",
-    "type": "object",
-    "order": 4,
-    "properties": {
-      "newline_at_start": {
-        "title": "以空行为文件开头",
-        "type": "boolean",
-        "default": true
-      },
-      "newline_at_end": {
-        "title": "以空行为文件结尾",
-        "type": "boolean",
-        "default": true
-      },
-      "max_preserve_newlines": {
-        "title": "保留最多的空白行数",
-        "type": "integer",
-        "default": 3
-      }
-    }
-  },
-  "other_setting": {
-    "title": "其他",
-    "type": "object",
-    "order": 5,
-    "properties": {
-      "space_after_anon_function": {
-        "title": "匿名函数和括号之间加一个空格",
-        "type": "boolean",
-        "default": true
-      },
-      "code_comment_align": {
-        "title": "连续行代码注释对齐",
-        "type": "boolean",
-        "default": true
-      }
-    }
-  }
-    },
-    "snippets": [
-      {
-        "language": "javascript",
-        "path": "./snippets/javascript.json"
-      }
-    ]
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install"
