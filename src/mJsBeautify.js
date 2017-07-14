@@ -308,6 +308,6 @@ var textArr = [];
 
 
 
-module.exports = format(editorText, cfg);
+module.exports = (...args) => format (...args);
 
 
