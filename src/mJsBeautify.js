@@ -308,7 +308,6 @@ var textArr = [];
 
 
 
-// exports = format(editorText, cfg);
+module.exports = format(editorText, cfg);
 
-module.exports = _=>'123';
 
