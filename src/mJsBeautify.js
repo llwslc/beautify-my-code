@@ -198,7 +198,7 @@ var textArr = [];
         brace_style += `,preserve-inline`;
       }
       jsBeautifyOpts[`brace_style`] = brace_style;
-      jsBeautifyOpts[`break_chained_methods`] = cfg.style_setting.z_break_chained_methods;
+      jsBeautifyOpts[`break_chained_methods`] = cfg.style_setting.break_chained_methods;
       jsBeautifyOpts[`keep_array_indentation`] = cfg.style_setting.keep_array_indentation;
 
       var beautifiedText = jsBeautify(editorText, jsBeautifyOpts);
