@@ -73,7 +73,7 @@
           "default": false
         },
         "beautify-my-code.newline_setting.newline_at_start": {
-          "description": "空行相关: 以空行为文件开头",
+          "description": "空行相关: 以空行为文件开头(针对 JavaScript)",
           "type": "boolean",
           "default": true
         },
@@ -99,11 +99,10 @@
         }
       },
       "snippets": [
-        {
-          "language": "javascript",
-          "path": "./snippets/javascript.json"
-        }
-      ]
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
+      }]
     }
   },
   "scripts": {
