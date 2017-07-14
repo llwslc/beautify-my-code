@@ -18,9 +18,9 @@ exports.activate = function (context)
         {
             return;
         }
-            
+
         var editorText = doc.getText();
-        var newText =editorText// mJsBeautify(editorText, myConfig);
+        var newText = mJsBeautify(editorText, myConfig);
 
         var fullRange = new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
         var we = new vscode.WorkspaceEdit();
@@ -33,10 +33,8 @@ exports.activate = function (context)
     {
         getCfg();
     });
-    
-        getCfg();
 
-        console.log(myConfig);
+    getCfg();
 };
 
 exports.deactivate = function () { };
