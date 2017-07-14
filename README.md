@@ -1,6 +1,6 @@
-# beautify-my-code-atom
+# beautify-my-code
 
-> atom 代码美化插件, 基于 [js-beautify](https://github.com/beautify-web/js-beautify) 封装
+> vscode 代码美化插件, 基于 [js-beautify](https://github.com/beautify-web/js-beautify) 封装
 
 ## 功能设置
 
