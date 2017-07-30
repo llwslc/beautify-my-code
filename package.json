@@ -97,13 +97,13 @@
           "type": "boolean",
           "default": true
         }
-      },
-      "snippets": [
-      {
-        "language": "javascript",
-        "path": "./snippets/javascript.json"
-      }]
-    }
+      }
+    },
+    "snippets": [
+    {
+      "language": "javascript",
+      "path": "./snippets/javascript.json"
+    }]
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install"
