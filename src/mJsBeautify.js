@@ -207,7 +207,10 @@ var format = function (editorText, cfg, languageId)
 
   if (cfg.newline_setting.newline_at_start && languageId == `javascript`)
   {
-    beautifiedText = `\n${beautifiedText}`;
+    if (beautifiedText.indexOf(`#!`))
+    {
+      beautifiedText = `\n${beautifiedText}`;
+    }
   }
 
   getTextArr(beautifiedText);
