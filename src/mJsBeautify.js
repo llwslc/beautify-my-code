@@ -280,7 +280,7 @@ var format = function (editorText, cfg, languageId)
             var subTextLineIndex = textLines[j].indexOf(`//`);
             var subCode = textLines[j].substring(0, subTextLineIndex).trimRight();
             subTextLines.push({code: subCode, comment: textLines[j].substring(subTextLineIndex + 2).trim()});
-            subTextLineCodeLengthArr.push(subCode.length)
+            subTextLineCodeLengthArr.push(subCode.length);
           }
 
           maxCodeLength = Math.max.apply(null, subTextLineCodeLengthArr);

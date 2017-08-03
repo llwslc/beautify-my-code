@@ -16,7 +16,7 @@ exports.activate = function (context)
   var getCfg = function ()
   {
     myConfig = vscode.workspace.getConfiguration(extensionName);
-  }
+  };
 
   vscode.workspace.onWillSaveTextDocument(function (event)
   {
@@ -54,7 +54,7 @@ exports.activate = function (context)
       var diagnostic = new vscode.Diagnostic(range, msg);
       diagnostic.code = 0;
 
-      diagnostics.push(diagnostic)
+      diagnostics.push(diagnostic);
     });
 
     diagnosticCollection.set(doc.uri, diagnostics);
