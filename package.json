@@ -96,6 +96,11 @@
           "description": "其他: 连续行代码注释对齐",
           "type": "boolean",
           "default": true
+        },
+        "beautify-my-code.other_setting.eslint_on_save": {
+          "description": "其他: 保存时使用 ESLint 检测代码",
+          "type": "boolean",
+          "default": true
         }
       }
     },
@@ -112,6 +117,7 @@
     "vscode": "^1.1.4"
   },
   "dependencies": {
+    "eslint": "^4.3.0",
     "js-beautify": "^1.6.12"
   },
   "repository": "https://github.com/llwslc/beautify-my-code",
