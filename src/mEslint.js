@@ -1,12 +1,12 @@
 
-var Linter = require("eslint").Linter;
-var linter = new Linter();
+const Linter = require('eslint').Linter;
+const eslintrc = require('../eslint/eslintrc');
 
-var messages = linter.verify("var foo\n console.log(a);",
+var eslint = function (rawText)
 {
-  rules: {
-    semi: 2
-  }
-});
+  var linter = new Linter();
 
-messages.forEach((el) => {console.log(el.fix)})
+  return linter.verify(rawText, eslintrc);
+}
+
+module.exports = (...args) => eslint(...args);
