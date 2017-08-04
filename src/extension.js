@@ -46,11 +46,13 @@ exports.activate = function (context)
     var diagnostics = [];
     eslintRes.forEach(function (res)
     {
+      console.log(res);
       var codeLine = res.line - 1;
       var codeColumn = res.column - 1;
-      var errLen = res.fix.range[1] - res.fix.range[0];
+      var errLen = 0;
+      if (!!res.fix) errLen = res.fix.range[1] - res.fix.range[0];
       var range = new vscode.Range(codeLine, codeColumn, codeLine, (codeColumn + errLen));
-      var msg = `[ESLint] ${res.ruleId}: ${res.message}`;
+      var msg = `[ESLint] ${res.message} (${res.ruleId})`;
       var diagnostic = new vscode.Diagnostic(range, msg);
       diagnostic.code = 0;
 
