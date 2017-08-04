@@ -67,6 +67,13 @@ exports.activate = function (context)
     getCfg();
   });
 
+  vscode.commands.registerCommand('eslintrc.edit', function ()
+  {
+    vscode.workspace.openTextDocument(`${context.extensionPath}/eslint/eslintrc.js`)
+      .then(doc => vscode.window.showTextDocument(doc, 1, false));
+  });
+
+
   getCfg();
 };
 

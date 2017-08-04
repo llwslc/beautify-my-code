@@ -17,6 +17,11 @@
   ],
   "main": "./src/extension",
   "contributes": {
+    "commands": [
+    {
+      "command": "eslintrc.edit",
+      "title": "修改: 'Beautify My Code' 插件中 ESLint 规则文件"
+    }],
     "configuration": {
       "type": "object",
       "title": "beautify-my-code",
