@@ -3,7 +3,10 @@ const Linter = require('eslint').Linter;
 const CLIEngine = require('eslint').CLIEngine;
 const eslintrc = require('../eslint/eslintrc');
 
-var config = new CLIEngine({baseConfig: eslintrc}).config.baseConfig;
+var config = new CLIEngine({
+  baseConfig: eslintrc,
+  useEslintrc: false
+}).config.baseConfig;
 
 var eslint = function (rawText)
 {
