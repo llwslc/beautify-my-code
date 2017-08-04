@@ -2,7 +2,7 @@
   "name": "beautify-my-code",
   "displayName": "Beautify My Code",
   "description": "javascript format.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "llwslc <llwslc@gmail.com>",
   "publisher": "llwslc",
   "engines": {
