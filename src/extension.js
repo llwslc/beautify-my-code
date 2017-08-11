@@ -47,16 +47,23 @@ exports.activate = function (context)
     eslintRes.forEach(function (res)
     {
       console.log(res);
-      var codeLine = res.line - 1;
-      var codeColumn = res.column - 1;
-      var errLen = 0;
-      if (!!res.fix) errLen = res.fix.range[1] - res.fix.range[0];
-      var range = new vscode.Range(codeLine, codeColumn, codeLine, (codeColumn + errLen));
-      var msg = `[ESLint] ${res.message} (${res.ruleId})`;
-      var diagnostic = new vscode.Diagnostic(range, msg);
-      diagnostic.code = 0;
+      if (res.ruleId === 'quotes' && res.source[res.column - 1] === '`')
+      {
+        // null
+      }
+      else
+      {
+        var codeLine = res.line - 1;
+        var codeColumn = res.column - 1;
+        var errLen = 0;
+        if (!!res.fix) errLen = res.fix.range[1] - res.fix.range[0];
+        var range = new vscode.Range(codeLine, codeColumn, codeLine, (codeColumn + errLen));
+        var msg = `[ESLint] ${res.message} (${res.ruleId})`;
+        var diagnostic = new vscode.Diagnostic(range, msg);
+        diagnostic.code = 0;
 
-      diagnostics.push(diagnostic);
+        diagnostics.push(diagnostic);
+      }
     });
 
     diagnosticCollection.set(doc.uri, diagnostics);
