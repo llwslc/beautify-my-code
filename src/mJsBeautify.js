@@ -1,5 +1,6 @@
 
-const jsBeautify = require(`js-beautify`).js_beautify;
+var common = require('./common');
+var jsBeautify = require(`js-beautify`).js_beautify;
 
 var preserverStr = `!QAZ@WSX#EDC$RFV%TGB^YHN&UJM*IK(OL)P_{+}`;
 var textArr = [];
@@ -205,7 +206,7 @@ var format = function (editorText, cfg, languageId)
 
   beautifiedText = beautifiedText.replace(/\n+( *)}/g, `\n$1}`);
 
-  if (cfg.newline_setting.newline_at_start && languageId == `javascript`)
+  if (cfg.newline_setting.newline_at_start && languageId == common.jsLanguageId)
   {
     if (beautifiedText.indexOf(`#!`))
     {
@@ -305,6 +306,7 @@ var format = function (editorText, cfg, languageId)
     beautifiedTextCodeCommentAlignTemp = textLines.join(`\n`);
     beautifiedText = backToSrcStr(beautifiedTextCodeCommentAlignTemp);
   }
+
 
   return beautifiedText;
 };

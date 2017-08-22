@@ -1,10 +1,9 @@
 
 var vscode = require('vscode');
+var common = require('./common');
+var mVueBeautify = require('./mVueBeautify');
 var mJsBeautify = require('./mJsBeautify');
 var mEsLint = require('./mEsLint');
-
-var jsLanguageId = 'javascript';
-var jsonLanguageId = 'json';
 
 var extensionName = require('../package').name;
 
@@ -22,13 +21,23 @@ exports.activate = function (context)
   {
     var doc = event.document;
     var editorText = '';
+    var newText = '';
 
     if (!myConfig.function_setting.format_on_save) return;
 
-    if (doc.languageId !== jsLanguageId && doc.languageId !== jsonLanguageId) return;
-
     editorText = doc.getText();
-    var newText = mJsBeautify(editorText, myConfig, doc.languageId);
+    if (doc.languageId === common.jsLanguageId || doc.languageId === common.jsonLanguageId)
+    {
+      newText = mJsBeautify(editorText, myConfig, doc.languageId);
+    }
+    else if (doc.languageId === common.vueLanguageId)
+    {
+      newText = mVueBeautify(editorText, myConfig, doc.languageId);
+    }
+    else
+    {
+      return;
+    }
 
     var fullRange = new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE);
     var we = new vscode.WorkspaceEdit();
@@ -38,7 +47,7 @@ exports.activate = function (context)
 
     if (!myConfig.other_setting.eslint_on_save) return;
 
-    if (doc.languageId !== jsLanguageId) return;
+    if (doc.languageId !== common.jsLanguageId) return;
 
     editorText = doc.getText();
     var eslintRes = mEsLint(editorText);

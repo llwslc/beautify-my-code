@@ -1,7 +1,7 @@
 
-const Linter = require('eslint').Linter;
-const CLIEngine = require('eslint').CLIEngine;
-const eslintrc = require('../eslint/eslintrc');
+var Linter = require('eslint').Linter;
+var CLIEngine = require('eslint').CLIEngine;
+var eslintrc = require('../eslint/eslintrc');
 
 var config = new CLIEngine({
   baseConfig: eslintrc,
