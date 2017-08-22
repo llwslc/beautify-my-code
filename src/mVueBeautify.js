@@ -30,6 +30,7 @@ var format = function (editorText, cfg)
     beautifiedText += `\n</style>\n`;
   });
 
+
   return beautifiedText;
 };
 
