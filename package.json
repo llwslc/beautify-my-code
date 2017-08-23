@@ -17,6 +17,12 @@
   ],
   "main": "./src/extension",
   "contributes": {
+    "languages": [
+    {
+      "id": "vue",
+      "aliases": ["Vue", "vue"],
+      "extensions": [".vue"]
+    }],
     "commands": [
     {
       "command": "eslintrc.edit",
