@@ -21,12 +21,29 @@ var format = function (editorText, cfg)
   beautifiedText = `${html}\n`;
   beautifiedText += `<script>\n`;
   beautifiedText += js;
-  beautifiedText += `\n</script>\n`;
+  if (!cfg.newline_setting.newline_at_end)
+  {
+    beautifiedText += `\n`;
+  }
+  beautifiedText += `</script>\n`;
   parts.styles.forEach(function (style, index)
   {
-    beautifiedText += `\n<style lang="${style.lang}">\n`;
+    beautifiedText += `\n<style `;
+    if (style.scoped)
+    {
+      beautifiedText += `scoped `;
+    }
+    if (style.lang)
+    {
+      beautifiedText += `lang="${style.lang}">\n`;
+    }
+    else
+    {
+      beautifiedText += `lang="css">\n`;
+    }
+
     beautifiedText += css[index];
-    beautifiedText += `\n</style>\n`;
+    beautifiedText += `</style>\n`;
   });
 
 
