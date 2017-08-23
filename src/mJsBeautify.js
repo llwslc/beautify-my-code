@@ -206,14 +206,6 @@ var format = function (editorText, cfg, languageId)
 
   beautifiedText = beautifiedText.replace(/\n+( *)}/g, `\n$1}`);
 
-  if (cfg.newline_setting.newline_at_start && languageId == common.jsLanguageId)
-  {
-    if (beautifiedText.indexOf(`#!`))
-    {
-      beautifiedText = `\n${beautifiedText}`;
-    }
-  }
-
   getTextArr(beautifiedText);
 
   if (cfg.style_setting.object_brace_style_collapse)

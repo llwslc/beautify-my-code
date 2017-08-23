@@ -9,7 +9,6 @@ var format = function (editorText, cfg)
 {
   var beautifiedText = '';
   var parts = vueCompiler.parseComponent(editorText, {pad: 'space'});
-  cfg.newline_setting.newline_at_start = false;
 
   var html = mHtmlBeautify(`<template>${parts.template.content}</template>`, cfg);
   var js = mJsBeautify(parts.script.content.replace(/^ +$/mg, '  '), cfg, common.jsLanguageId);

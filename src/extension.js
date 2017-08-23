@@ -29,6 +29,14 @@ exports.activate = function (context)
     if (doc.languageId === common.jsLanguageId || doc.languageId === common.jsonLanguageId)
     {
       newText = mJsBeautify(editorText, myConfig, doc.languageId);
+
+      if (cfg.newline_setting.newline_at_start && doc.languageId == common.jsLanguageId)
+      {
+        if (newText.indexOf(`#!`))
+        {
+          newText = `\n${newText}`;
+        }
+      }
     }
     else if (doc.languageId === common.vueLanguageId)
     {
