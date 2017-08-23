@@ -30,7 +30,7 @@ exports.activate = function (context)
     {
       newText = mJsBeautify(editorText, myConfig, doc.languageId);
 
-      if (cfg.newline_setting.newline_at_start && doc.languageId == common.jsLanguageId)
+      if (myConfig.newline_setting.newline_at_start && doc.languageId == common.jsLanguageId)
       {
         if (newText.indexOf(`#!`))
         {
