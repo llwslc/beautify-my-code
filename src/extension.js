@@ -30,7 +30,7 @@ exports.activate = function (context)
     {
       newText = mJsBeautify(editorText, myConfig, doc.languageId);
 
-      if (myConfig.newline_setting.newline_at_start && doc.languageId == common.jsLanguageId)
+      if (myConfig.newline_setting.newline_at_start && doc.languageId === common.jsLanguageId)
       {
         if (newText.indexOf(`#!`))
         {
@@ -40,7 +40,7 @@ exports.activate = function (context)
     }
     else if (doc.languageId === common.vueLanguageId)
     {
-      newText = mVueBeautify(editorText, myConfig, doc.languageId);
+      newText = mVueBeautify(editorText, myConfig);
     }
     else
     {
@@ -55,33 +55,20 @@ exports.activate = function (context)
 
     if (!myConfig.other_setting.eslint_on_save) return;
 
-    if (doc.languageId !== common.jsLanguageId) return;
-
     editorText = doc.getText();
-    var eslintRes = mEsLint(editorText);
-
     var diagnostics = [];
-    eslintRes.forEach(function (res)
+    if (doc.languageId === common.jsLanguageId)
     {
-      console.log(res);
-      if (res.ruleId === 'quotes' && res.source[res.column - 1] === '`')
-      {
-        // null
-      }
-      else
-      {
-        var codeLine = res.line - 1;
-        var codeColumn = res.column - 1;
-        var errLen = 0;
-        if (!!res.fix) errLen = res.fix.range[1] - res.fix.range[0];
-        var range = new vscode.Range(codeLine, codeColumn, codeLine, (codeColumn + errLen));
-        var msg = `[ESLint] ${res.message} (${res.ruleId})`;
-        var diagnostic = new vscode.Diagnostic(range, msg);
-        diagnostic.code = 0;
-
-        diagnostics.push(diagnostic);
-      }
-    });
+      diagnostics = mEsLint(editorText, true, vscode);
+    }
+    else if (doc.languageId === common.vueLanguageId)
+    {
+      diagnostics = mEsLint(mVueBeautify.getJsCode(editorText), false, vscode);
+    }
+    else
+    {
+      return;
+    }
 
     diagnosticCollection.set(doc.uri, diagnostics);
   });

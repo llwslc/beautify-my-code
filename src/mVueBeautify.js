@@ -5,6 +5,11 @@ var mHtmlBeautify = require('./mHtmlBeautify');
 var mJsBeautify = require('./mJsBeautify');
 var mCssBeautify = require('./mCssBeautify');
 
+var getJsCode = function (editorText)
+{
+  return vueCompiler.parseComponent(editorText, {pad: 'space'}).script.content;
+};
+
 var format = function (editorText, cfg)
 {
   var beautifiedText = '';
@@ -64,3 +69,4 @@ var format = function (editorText, cfg)
 
 
 module.exports = (...args) => format(...args);
+module.exports.getJsCode = getJsCode;
