@@ -248,6 +248,7 @@ var format = function (editorText, cfg, languageId)
 
     var spaceAddNum = 2;
     var textLines = beautifiedTextCodeCommentAlignTemp.split(`\n`);
+    var subTextLineIndex = 0;
     for (var i = 0, iLen = textLines.length; i < iLen; ++i)
     {
       if ((textLines[i].indexOf(`//`) !== -1) && (textLines[i].indexOf(`//`) !== 0))
@@ -256,7 +257,8 @@ var format = function (editorText, cfg, languageId)
         var endCommentLine = i;
         for (var j = i + 1, jLen = textLines.length; j < jLen; ++j)
         {
-          if (textLines[j].indexOf(`//`) === -1)
+          subTextLineIndex = textLines[j].indexOf(`//`);
+          if (subTextLineIndex === -1 || textLines[j].substring(0, subTextLineIndex).trimRight().length === 0)
           {
             i = endCommentLine = j;
             break;
@@ -270,7 +272,7 @@ var format = function (editorText, cfg, languageId)
           var maxCodeLength = 0;
           for (var j = startCommentLine, jLen = endCommentLine; j < jLen; ++j)
           {
-            var subTextLineIndex = textLines[j].indexOf(`//`);
+            subTextLineIndex = textLines[j].indexOf(`//`);
             var subCode = textLines[j].substring(0, subTextLineIndex).trimRight();
             subTextLines.push({code: subCode, comment: textLines[j].substring(subTextLineIndex + 2).trim()});
             subTextLineCodeLengthArr.push(subCode.length);
